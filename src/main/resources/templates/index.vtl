@@ -1,48 +1,31 @@
 <h1>Wildlife Tracking System</h1>
 
-<h2> New Animal: </h2>
+<h3> Endangered Animals: </h3>
 
-#if($animals)
-  <p>Click on a animal to see their sightings:</p>
+#if($endangereds.size() > 0)
+  <p>Click on an endangered animal to see their sightings:</p>
   <ul>
-    #foreach ($animal in $animals)
-      <li><a href="/animals/$animal.getId()">$animal.getName()</a></li>
+    #foreach ($endangered in $endangereds)
+      <li><a href="/endangereds/$endangered.getId()">$endangered.getName()</a></li>
     #end
   </ul>
 #else
-  <p>There are no animals in the database</p>
+  <p>There are no endangered animals in the database</p>
 #end
 
-<form class="form-group" action="/animals" method="post">
-  <label for="name">Animal name</label>
-  <input id="name" name="name" type="text">
-  <label for="health">Health of Animal</label>
-  <option value="HEALTH_1">Healthy</option>
-  <option value="HEALTH_2">Okay</option>
-  <option value="HEALTH_3">Ill</option>
-  <label for="age">Approximate Age of Animal</label>
-  <option value="AGE_1">Newborn</option>
-  <option value="AGE_2">Young</option>
-  <option value="AGE_3">Adult</option>
+<h5><a href="/endangereds">Add an Endangered Animal</a><h5>
 
-  <button type="submit" class="btn btn-success">Add Stylist</button>
-</form>
+<h3> Unendangered Animals: </h3>
 
-<h2>New Sighting:</h2>
-
-<form class="form-group" action="/sightings" method="post">
-  <label for="animalId">Select an Animal To Add a Sighting To:</label>
-  <select id='animalId' name='animalId' type='text'>
-    #foreach($animal in $animals)
-      <option value="$animal.getId()">$animal.getName()</option>
+#if($unendangereds)
+  <p>Click on a unendangered animal to see their sightings:</p>
+  <ul>
+    #foreach ($unendangered in $unendangereds)
+      <li><a href="/unendangereds/$unendangered.getId()">$unendangered.getName()</a></li>
     #end
-  </select>
+  </ul>
+#else
+  <p>There are no unendangered animals in the database</p>
+#end
 
-  <div class="form-group">
-    <label for="location">Sighting Location</label>
-    <input id="location" name="location" type="text" class="form-control"><label for="ranger-name">Ranger Name</label>
-    <input id="ranger-name" name="ranger-name" type="text" class="form-control">
-  </div>
-
-  <button type="submit" class="btn btn-success">Add Sighting</button>
-</form>
+<h5><a href="/unendangereds">Add an Unendangered Animal</a><h5>
