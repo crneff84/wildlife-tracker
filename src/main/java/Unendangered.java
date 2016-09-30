@@ -31,14 +31,14 @@ public class Unendangered extends Animal {
     }
   }
 
-    public List<Unendangered> getSightings() {
-        try(Connection con = DB.sql2o.open()) {
-          String sql = "SELECT * FROM sightings WHERE animalId = :id;";
-          return con.createQuery(sql)
-                    .addParameter("id", this.id)
-                    .throwOnMappingFailure(false)
-                    .executeAndFetch(Unendangered.class);
-        }
-    }
+  public List<Sighting> getSightings() {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "SELECT * FROM sightings WHERE animalId = :id;";
+        return con.createQuery(sql)
+                  .addParameter("id", this.id)
+                  .throwOnMappingFailure(false)
+                  .executeAndFetch(Sighting.class);
+      }
+  }
 
 }

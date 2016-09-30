@@ -69,17 +69,17 @@ public class EndangeredTest {
     assertEquals(Endangered.find(secondEndangered.getId()), secondEndangered);
   }
 
-  // @Test
-  // public void getSightings_retrievesAllSightingsFromDB_List() {
-  //   Endangered testEndangered = new Endangered("Rhino", "Healthy", "Newborn");
-  //   testEndangered.save();
-  //   Sighting firstSighting = new Sighting(testEndangered.getId(), "Mountains", "Greg");
-  //   firstSighting.save();
-  //   Sighting secondSighting = new Sighting(testEndangered.getId(), "Mountains", "George");
-  //   secondSighting.save();
-  //   Object[] sightings = new Object[] { firstSighting, secondSighting };
-  //   assertTrue(testEndangered.getSightings().containsAll(Arrays.asList(sightings)));
-  // }
+  @Test
+  public void getSightings_retrievesAllSightingsFromDB_List() {
+    Endangered testEndangered = new Endangered("Rhino", "Healthy", "Newborn");
+    testEndangered.save();
+    Sighting firstSighting = new Sighting(testEndangered.getId(), "Mountains", "Greg");
+    firstSighting.save();
+    Sighting secondSighting = new Sighting(testEndangered.getId(), "Mountains", "George");
+    secondSighting.save();
+    Object[] sightings = new Object[] { firstSighting, secondSighting };
+    assertTrue(testEndangered.getSightings().containsAll(Arrays.asList(sightings)));
+  }
 
 
 

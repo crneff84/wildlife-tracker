@@ -69,17 +69,17 @@ public class UnendangeredTest {
     assertEquals(Unendangered.find(secondUnendangered.getId()), secondUnendangered);
   }
 
-  // @Test
-  // public void getSightings_retrievesAllSightingsFromDB_List() {
-  //   Unendangered testUnendangered = new Unendangered("Rhino", "Healthy", "Newborn");
-  //   testUnendangered.save();
-  //   Sighting firstSighting = new Sighting(testUnendangered.getId(), "Mountains", "Greg");
-  //   firstSighting.save();
-  //   Sighting secondSighting = new Sighting(testUnendangered.getId(), "Mountains", "George");
-  //   secondSighting.save();
-  //   Object[] sightings = new Object[] { firstSighting, secondSighting };
-  //   assertTrue(testUnendangered.getSightings().containsAll(Arrays.asList(sightings)));
-  // }
+  @Test
+  public void getSightings_retrievesAllSightingsFromDB_List() {
+    Unendangered testUnendangered = new Unendangered("Rhino", "Healthy", "Newborn");
+    testUnendangered.save();
+    Sighting firstSighting = new Sighting(testUnendangered.getId(), "Mountains", "Greg");
+    firstSighting.save();
+    Sighting secondSighting = new Sighting(testUnendangered.getId(), "Mountains", "George");
+    secondSighting.save();
+    Object[] sightings = new Object[] { firstSighting, secondSighting };
+    assertTrue(testUnendangered.getSightings().containsAll(Arrays.asList(sightings)));
+  }
 
 
 

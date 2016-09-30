@@ -42,22 +42,66 @@ public class SightingTest {
     assertTrue(firstSighting.equals(secondSighting));
   }
 
-  // @Test
-  // public void save_savesFireMonsterWithPersonIdIntoDB_true() {
-  //   Person testPerson = new Person("Henry", "henry@henry.com");
-  //   testPerson.save();
-  //   FireMonster testFireMonster = new FireMonster("Bubbles", testPerson.getId());
-  //   testFireMonster.save();
-  //   FireMonster savedFireMonster = FireMonster.find(testFireMonster.getId());
-  //   assertEquals(savedFireMonster.getPersonId(), testPerson.getId());
-  // }
-  //
-  // @Test
-  // public void save_recordsTimeOfCreationInDatabase() {
-  //   FireMonster testFireMonster = new FireMonster("Bubbles", 1);
-  //   testFireMonster.save();
-  //   Timestamp savedFireMonsterBirthday = FireMonster.find(testFireMonster.getId()).getBirthday();
-  //   Timestamp rightNow = new Timestamp(new Date().getTime());
-  //   assertEquals(rightNow.getDay(), savedFireMonsterBirthday.getDay());
-  // }
+  @Test
+  public void save_returnsTrueIfObjectsAreTheSame() {
+    Sighting testSighting = new Sighting(1, "Mountains", "George");
+    testSighting.save();
+    assertTrue(Sighting.all().get(0).equals(testSighting));
+  }
+
+  @Test
+  public void save_assignsIdToObject_true() {
+    Sighting testSighting = new Sighting(1, "Mountains", "George");
+    testSighting.save();
+    Sighting savedSighting = Sighting.all().get(0);
+    assertEquals(savedSighting.getId(), testSighting.getId());
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfSighting_true() {
+    Sighting firstSighting = new Sighting(1, "Mountains", "George");
+    firstSighting.save();
+    Sighting secondSighting = new Sighting(2, "Grasslands", "Rick");
+    secondSighting.save();
+    assertEquals(true, Sighting.all().get(0).equals(firstSighting));
+    assertEquals(true, Sighting.all().get(1).equals(secondSighting));
+  }
+
+  @Test
+  public void find_returnsSightingWithSameId_secondSighting() {
+    Sighting firstSighting = new Sighting(1, "Mountains", "George");
+    firstSighting.save();
+    Sighting secondSighting = new Sighting(2, "Grasslands", "Rick");
+    secondSighting.save();
+    assertEquals(Sighting.find(secondSighting.getId()), secondSighting);
+  }
+
+  @Test
+  public void save_savesSightingWithAnimalIdIntoDB_true() {
+    Endangered testEndangered = new Endangered("Rhino", "Healthy", "Newborn");
+    testEndangered.save();
+    Sighting testSighting = new Sighting(testEndangered.getId(), "Mountains", "George");
+    testSighting.save();
+    Sighting savedSighting = Sighting.find(testSighting.getId());
+    assertEquals(savedSighting.getAnimalId(), testEndangered.getId());
+  }
+
+  @Test
+  public void save_savesSightingWithAnimalIdIntoDBu_true() {
+    Unendangered testUnendangered = new Unendangered("Rhino", "Healthy", "Newborn");
+    testUnendangered.save();
+    Sighting testSighting = new Sighting(testUnendangered.getId(), "Mountains", "George");
+    testSighting.save();
+    Sighting savedSighting = Sighting.find(testSighting.getId());
+    assertEquals(savedSighting.getAnimalId(), testUnendangered.getId());
+  }
+
+  @Test
+  public void save_recordsTimeOfCreationInDatabase() {
+    Sighting testSighting = new Sighting(1, "Mountains", "George");
+    testSighting.save();
+    Timestamp savedSighting = Sighting.find(testSighting.getId()).getSightingTime();
+    Timestamp rightNow = new Timestamp(new Date().getTime());
+    assertEquals(rightNow.getDay(), savedSighting.getDay());
+  }
 }

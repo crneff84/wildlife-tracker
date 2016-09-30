@@ -31,13 +31,13 @@ public class Endangered extends Animal {
     }
   }
 
-  public List<Endangered> getSightings() {
+  public List<Sighting> getSightings() {
       try(Connection con = DB.sql2o.open()) {
         String sql = "SELECT * FROM sightings WHERE animalId = :id;";
         return con.createQuery(sql)
                   .addParameter("id", this.id)
                   .throwOnMappingFailure(false)
-                  .executeAndFetch(Endangered.class);
+                  .executeAndFetch(Sighting.class);
       }
   }
 
