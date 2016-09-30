@@ -1,6 +1,6 @@
 # _Wildlife Tracker_
 
-#### _Epicodus: Java, Week 4: Advanced Topics In Java_
+#### _Epicodus: Java Week 4: Advanced Topics In Java_
 
 #### By _**Chance Neff**_
 
