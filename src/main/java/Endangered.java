@@ -11,5 +11,35 @@ public class Endangered extends Animal {
     type = DATABASE_TYPE;
   }
 
+  public static List<Endangered> all() {
+    String sql = "SELECT * FROM animals WHERE type = 'endangered';";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+      .throwOnMappingFailure(false)
+      .executeAndFetch(Endangered.class);
+    }
+  }
+
+  public static Endangered find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM animals WHERE id = :id";
+      Endangered endangered = con.createQuery(sql)
+       .addParameter("id", id)
+       .throwOnMappingFailure(false)
+       .executeAndFetchFirst(Endangered.class);
+    return endangered;
+    }
+  }
+
+  public List<Endangered> getSightings() {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "SELECT * FROM sightings WHERE animalId = :id;";
+        return con.createQuery(sql)
+                  .addParameter("id", this.id)
+                  .throwOnMappingFailure(false)
+                  .executeAndFetch(Endangered.class);
+      }
+  }
+
 
 }

@@ -1,7 +1,6 @@
+import java.util.Arrays;
 import org.sql2o.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.sql.Timestamp;
 
 public abstract class Animal {
 
@@ -30,6 +29,10 @@ public abstract class Animal {
     return age;
   }
 
+  public int getId() {
+    return id;
+  }
+
   @Override
   public boolean equals(Object otherAnimal){
     if (!(otherAnimal instanceof Animal)) {
@@ -39,6 +42,19 @@ public abstract class Animal {
       return this.getName().equals(newAnimal.getName()) &&
              this.getHealth().equals(newAnimal.getHealth()) &&
              this.getAge().equals(newAnimal.getAge());
+    }
+  }
+
+  public void save() {
+    try (Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO animals (name, health, age, type) VALUES (:name, :health, :age, :type)";
+      this.id = (int) con.createQuery(sql, true)
+                         .addParameter("name", this.name)
+                         .addParameter("health", this.health)
+                         .addParameter("age", this.age)
+                         .addParameter("type", this.type)
+                         .executeUpdate()
+                         .getKey();
     }
   }
 }
