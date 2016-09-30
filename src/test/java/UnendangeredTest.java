@@ -42,6 +42,13 @@ public class UnendangeredTest {
     assertTrue(Unendangered.all().get(0).equals(testUnendangered));
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void save_returnsTrueIfObjectsAreTheSame_exception() {
+    Unendangered testUnendangered = new Unendangered("", "Healthy", "Newborn");
+    testUnendangered.save();
+    assertTrue(Unendangered.all().get(0).equals(testUnendangered));
+  }
+
   @Test
   public void save_assignsIdToObject_true() {
     Unendangered testUnendangered = new Unendangered("Rhino", "Healthy", "Newborn");

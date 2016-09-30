@@ -47,6 +47,9 @@ public abstract class Animal {
 
   public void save() {
     try (Connection con = DB.sql2o.open()) {
+      if(this.getName().equals("")) {
+        throw new IllegalArgumentException("You must enter a name!");
+      }
       String sql = "INSERT INTO animals (name, health, age, type) VALUES (:name, :health, :age, :type)";
       this.id = (int) con.createQuery(sql, true)
                          .addParameter("name", this.name)

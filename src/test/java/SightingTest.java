@@ -49,6 +49,13 @@ public class SightingTest {
     assertTrue(Sighting.all().get(0).equals(testSighting));
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void save_returnsTrueIfObjectsAreTheSame_exception() {
+    Sighting testSighting = new Sighting(1, "", "");
+    testSighting.save();
+    assertTrue(Sighting.all().get(0).equals(testSighting));
+  }
+
   @Test
   public void save_assignsIdToObject_true() {
     Sighting testSighting = new Sighting(1, "Mountains", "George");

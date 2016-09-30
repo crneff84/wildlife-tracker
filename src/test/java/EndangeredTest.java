@@ -42,6 +42,13 @@ public class EndangeredTest {
     assertTrue(Endangered.all().get(0).equals(testEndangered));
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void save_returnsTrueIfObjectsAreTheSame_exception() {
+    Endangered testEndangered = new Endangered("", "Healthy", "Newborn");
+    testEndangered.save();
+    assertTrue(Endangered.all().get(0).equals(testEndangered));
+  }
+
   @Test
   public void save_assignsIdToObject_true() {
     Endangered testEndangered = new Endangered("Rhino", "Healthy", "Newborn");
