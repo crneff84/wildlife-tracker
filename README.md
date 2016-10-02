@@ -23,8 +23,8 @@ This application is designed to allow park rangers to track wildlife sightings i
 ## Setup/Installation Requirements
 
 * Clone this repository to your desktop
-* In terminal, navigate to /**_wildlife-tracker_** and type: `$ gradle compileJava`
-* In terminal, navigate to /**_wildlife-tracker_**/build/classes/main and type: `$ java App`
+* In terminal, navigate to /**_wildlife-tracker_** and type: `$ gradle run`
+* Navigate to localhost:4567
 
 ## Database Setup
 
@@ -42,7 +42,7 @@ _None_
 
 ## Support and contact details
 
-* Chance Neff: _crneff84@gmail.com_
+Chance Neff: _crneff84@gmail.com_
 
 ## Technologies Used
 
