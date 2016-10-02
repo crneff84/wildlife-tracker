@@ -1,71 +1,73 @@
-<h1>Wildlife Tracking System</h1>
+<div id="endangered">
+  <h3> Endangered Animals: </h3>
 
-<h3> Endangered Animals: </h3>
-
-#if($endangereds.size() > 0)
-  <p>Click on an endangered animal to see their sightings:</p>
-  <ul>
-    #foreach ($endangered in $endangereds)
-      <li><a href="/endangereds/$endangered.getId()">$endangered.getName()</a></li>
-    #end
-  </ul>
-#else
-  <p>There are no endangered animals in the database</p>
-#end
-
-<h5><a href="/endangereds">Add an Endangered Animal</a><h5>
-
-<h2>New Endangered Animal Sighting:</h2>
-
-<form class="form-group" action="/endangeredsightings" method="post">
-  <div class="form-group">
-    <label for="animalId">Select an Animal To Add a Sighting To: </label>
-    <select id='animalId' name='animalId' type='text'>
-      #foreach($endangered in $endangereds)
-        <option value="$endangered.getId()">$endangered.getName()</option>
+  #if($endangereds.size() > 0)
+    <p>Click on an endangered animal to see their sightings:</p>
+    <ul>
+      #foreach ($endangered in $endangereds)
+        <li><a href="/endangereds/$endangered.getId()">$endangered.getName()</a></li>
       #end
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="location">Sighting Location</label>
-    <input id="location" name="location" type="text" class="form-control"><label for="ranger-name">Ranger Name</label>
-    <input id="ranger-name" name="ranger-name" type="text" class="form-control">
-  </div>
+    </ul>
+  #else
+    <p>There are no endangered animals in the database</p>
+  #end
 
-  <button type="submit" class="btn btn-success">Add Sighting</button>
-</form>
+  <h5><a href="/endangereds">Add an Endangered Animal</a><h5>
 
-<h3> Unendangered Animals: </h3>
+  <h3>New Endangered Animal Sighting:</h3>
 
-#if($unendangereds.size() > 0)
-  <p>Click on a unendangered animal to see their sightings:</p>
-  <ul>
-    #foreach ($unendangered in $unendangereds)
-      <li><a href="/unendangereds/$unendangered.getId()">$unendangered.getName()</a></li>
-    #end
-  </ul>
-#else
-  <p>There are no unendangered animals in the database</p>
-#end
+  <form class="form-group" action="/endangeredsightings" method="post">
+    <div class="form-group">
+      <label for="animalId">Select an Animal To Add a Sighting To: </label>
+      <select id='animalId' name='animalId' type='text'>
+        #foreach($endangered in $endangereds)
+          <option value="$endangered.getId()">$endangered.getName()</option>
+        #end
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="location">Sighting Location</label>
+      <input id="location" name="location" type="text" class="form-control"><label for="ranger-name">Ranger Name</label>
+      <input id="ranger-name" name="ranger-name" type="text" class="form-control">
+    </div>
 
-<h5><a href="/unendangereds">Add an Unendangered Animal</a><h5>
+    <button type="submit" class="btn btn-success">Add Sighting</button>
+  </form>
+</div>
 
-<h2>New Unendangered Animal Sighting:</h2>
+<div id="unendangered">
+  <h3> Unendangered Animals: </h3>
 
-<form class="form-group" action="/unendangeredsightings" method="post">
-  <div class="form-group">
-    <label for="animalId">Select an Animal To Add a Sighting To: </label>
-    <select id='animalId' name='animalId' type='text'>
-      #foreach($unendangered in $unendangereds)
-        <option value="$unendangered.getId()">$unendangered.getName()</option>
+  #if($unendangereds.size() > 0)
+    <p>Click on a unendangered animal to see their sightings:</p>
+    <ul>
+      #foreach ($unendangered in $unendangereds)
+        <li><a href="/unendangereds/$unendangered.getId()">$unendangered.getName()</a></li>
       #end
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="location">Sighting Location</label>
-    <input id="location" name="location" type="text" class="form-control"><label for="ranger-name">Ranger Name</label>
-    <input id="ranger-name" name="ranger-name" type="text" class="form-control">
-  </div>
+    </ul>
+  #else
+    <p>There are no unendangered animals in the database</p>
+  #end
 
-  <button type="submit" class="btn btn-success">Add Sighting</button>
-</form>
+  <h5><a href="/unendangereds">Add an Unendangered Animal</a><h5>
+
+  <h3>New Unendangered Animal Sighting:</h3>
+
+  <form class="form-group" action="/unendangeredsightings" method="post">
+    <div class="form-group">
+      <label for="animalId">Select an Animal To Add a Sighting To: </label>
+      <select id='animalId' name='animalId' type='text'>
+        #foreach($unendangered in $unendangereds)
+          <option value="$unendangered.getId()">$unendangered.getName()</option>
+        #end
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="location">Sighting Location</label>
+      <input id="location" name="location" type="text" class="form-control"><label for="ranger-name">Ranger Name</label>
+      <input id="ranger-name" name="ranger-name" type="text" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-success">Add Sighting</button>
+  </form>
+</div>  
