@@ -29,8 +29,24 @@ public class App {
     post("/endangereds", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
       String name = request.queryParams("name");
-      String health = request.queryParams("health");
-      String age = request.queryParams("age");
+      Integer healthInput = Integer.parseInt(request.queryParams("health"));
+      Integer ageInput = Integer.parseInt(request.queryParams("age"));
+      String health = "";
+      String age = "";
+      if (healthInput == 1) {
+        health = Animal.HEALTH_1;
+      } else if (healthInput == 2) {
+        health = Animal.HEALTH_2;
+      } else if (healthInput == 3) {
+        health = Animal.HEALTH_3;
+      }
+      if (ageInput == 1) {
+        age = Animal.AGE_1;
+      } else if (ageInput == 2) {
+        age = Animal.AGE_2;
+      } else if (ageInput == 3) {
+        age = Animal.AGE_3;
+      }
       try {
       Endangered newEndangered = new Endangered(name, health, age);
       newEndangered.save();
@@ -80,8 +96,24 @@ public class App {
     post("/unendangereds", (request, response) -> {
       Map<String, Object> model = new HashMap<>();
       String name = request.queryParams("name");
-      String health = request.queryParams("health");
-      String age = request.queryParams("age");
+      Integer healthInput = Integer.parseInt(request.queryParams("health"));
+      Integer ageInput = Integer.parseInt(request.queryParams("age"));
+      String health = "";
+      String age = "";
+      if (healthInput == 1) {
+        health = Animal.HEALTH_1;
+      } else if (healthInput == 2) {
+        health = Animal.HEALTH_2;
+      } else if (healthInput == 3) {
+        health = Animal.HEALTH_3;
+      }
+      if (ageInput == 1) {
+        age = Animal.AGE_1;
+      } else if (ageInput == 2) {
+        age = Animal.AGE_2;
+      } else if (ageInput == 3) {
+        age = Animal.AGE_3;
+      }
       try {
       Unendangered newUnendangered = new Unendangered(name, health, age);
       newUnendangered.save();
