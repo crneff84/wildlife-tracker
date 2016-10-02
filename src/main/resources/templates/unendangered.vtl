@@ -1,20 +1,23 @@
 <h1>Unendangered Animal Name: $unendangered.getName()</h1>
 
+<h3>Animal Status: </h3>
+
+<p>Health: $unendangered.getHealth()<p>
+<p>Age: $unendangered.getAge()<p>
+
 <h3>Sightings:</h3>
 
 #if($unendangered.getSightings())
-<ul>
   #foreach ($sighting in $unendangered.getSightings())
+    <h5>Recorded Sighting: </h5>
     <ul>
-      <li>$sighting.getLocation()</li>
-      <li>$sighting.getRangerName()</li>
-      <li>$sighting.getSightingTime()</li>
+      <li>Ranger Name: $sighting.getRangerName()</li>    
+      <li>Location: $sighting.getLocation()</li>
+      <li>Time of Entry: $sighting.getSightingTime()</li>
     </ul>
   #end
-</ul>
 #else
 <p>No Sightings Currently Logged for $unendangered.getName()</p>
 #end
 
 <a href="/">Back to Home Page</a>
-<br>

@@ -11,13 +11,13 @@
   #foreach ($sighting in $endangered.getSightings())
     <h5>Recorded Sighting: </h5>
     <ul>
+      <li>Ranger Name: $sighting.getRangerName()</li>    
       <li>Location: $sighting.getLocation()</li>
-      <li>Ranger Name: $sighting.getRangerName()</li>
       <li>Time of Entry: $sighting.getSightingTime()</li>
     </ul>
   #end
 #else
-<p>No Sightings Currently Logged for $animal.getName()</p>
+<p>No Sightings Currently Logged for $endangered.getName()</p>
 #end
 
 <a href="/">Back to Home Page</a>
