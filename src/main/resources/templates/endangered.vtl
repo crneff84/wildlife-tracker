@@ -7,17 +7,17 @@
 
 <h3>Sightings:</h3>
 
-#if($endangered.getSightings())
+#if($endangered.getSightings().size() > 0)
   #foreach ($sighting in $endangered.getSightings())
     <h5>Recorded Sighting: </h5>
     <ul>
-      <li>Ranger Name: $sighting.getRangerName()</li>    
+      <li>Ranger Name: $sighting.getRangerName()</li>
       <li>Location: $sighting.getLocation()</li>
       <li>Time of Entry: $sighting.getSightingTime()</li>
     </ul>
   #end
 #else
-<p>No Sightings Currently Logged for $endangered.getName()</p>
+<p>No Sightings Currently Logged for $endangered.getName().</p>
 #end
 
 <a href="/">Back to Home Page</a>
