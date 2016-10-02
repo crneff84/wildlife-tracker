@@ -50,15 +50,17 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/sightings", (request, response) -> {
-      Map<String, Object> model = new HashMap<String, Object>();
-      String name = request.queryParams("animalId");
-      String name = request.queryParams("name");
-      String name = request.queryParams("name");
-      Endangered endangered = Endangered.find(Integer.parseInt(request.params(":id")));
-      endangered.updateName(name);
-      String url = String.format("/endangereds/%d", endangered.getId());
-      response.redirect(url);
+    post("/endangeredsightings", (request, response) -> {
+      Map<String, Object> model = new HashMap<>();
+      Endangered endangered = Endangered.find(Integer.parseInt(request.queryParams("animalId")));
+      String location = request.queryParams("location");
+      String rangerName = request.queryParams("ranger-name");
+      Sighting newSighting = new Sighting(endangered.getId(), location, rangerName);
+      newSighting.save();
+      model.put("endangereds", Endangered.all());
+      model.put("unendangereds", Unendangered.all());
+      model.put("sightings", Sighting.all());
+      model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -81,6 +83,20 @@ public class App {
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     },new VelocityTemplateEngine());
+
+    post("/endangeredsightings", (request, response) -> {
+      Map<String, Object> model = new HashMap<>();
+      Endangered endangered = Endangered.find(Integer.parseInt(request.queryParams("animalId")));
+      String location = request.queryParams("location");
+      String rangerName = request.queryParams("ranger-name");
+      Sighting newSighting = new Sighting(endangered.getId(), location, rangerName);
+      newSighting.save();
+      model.put("endangereds", Endangered.all());
+      model.put("unendangereds", Unendangered.all());
+      model.put("sightings", Sighting.all());
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
   }
 }
